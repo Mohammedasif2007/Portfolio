@@ -253,6 +253,11 @@
       font-size: 13px;
     }
 
+    button.project-demo-link {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
     .btn--block {
       width: 100%;
     }
@@ -1577,6 +1582,286 @@
       transform: rotate(90deg);
     }
 
+    .project-demo-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1201;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .project-demo-modal.is-open {
+      display: flex;
+    }
+
+    .project-demo-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: color-mix(in srgb, #000 65%, transparent);
+      backdrop-filter: blur(4px);
+    }
+
+    .project-demo-modal__panel {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      width: min(1100px, 100%);
+      max-height: 92vh;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--shadow-md);
+      animation: resumeModalIn .35s var(--ease);
+    }
+
+    .project-demo-modal__toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 20px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-demo-modal__title {
+      margin: 0;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .project-demo-modal__close {
+      flex: 0 0 32px;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--text);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .project-demo-modal__close:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .project-demo-modal__content {
+      min-height: 320px;
+      padding: clamp(18px, 4vw, 30px);
+      overflow-y: auto;
+      background: #101522;
+      color: #eef2ff;
+    }
+
+    .project-demo-modal__content .demo-intro {
+      margin: 0 0 20px;
+      color: #b6bfd2;
+      line-height: 1.6;
+    }
+
+    .project-demo-modal__content button {
+      font: inherit;
+      color: inherit;
+    }
+
+    .project-demo-modal__content .primary,
+    .project-demo-modal__content .secondary,
+    .project-demo-modal__content .cell,
+    .project-demo-modal__content .drop {
+      border: 1px solid #47546e;
+      border-radius: 10px;
+      background: #242e42;
+      cursor: pointer;
+    }
+
+    .project-demo-modal__content .primary,
+    .project-demo-modal__content .secondary {
+      min-height: 42px;
+      padding: 9px 16px;
+    }
+
+    .project-demo-modal__content .primary {
+      border-color: #86aaff;
+      background: #456fc4;
+      color: white;
+      font-weight: 700;
+    }
+
+    .project-demo-modal__content .primary:hover {
+      background: #5681d8;
+    }
+
+    .project-demo-modal__content .secondary:hover,
+    .project-demo-modal__content .cell:hover,
+    .project-demo-modal__content .drop:hover {
+      border-color: #9ab8ff;
+      background: #303e59;
+    }
+
+    .project-demo-modal__content button:focus-visible {
+      outline: 3px solid #9ab8ff;
+      outline-offset: 3px;
+    }
+
+    .project-demo-modal__content .status {
+      min-height: 1.5em;
+      margin: 16px 0;
+      color: #c8d6f5;
+      font-weight: 600;
+    }
+
+    .project-demo-modal__content .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .project-demo-modal__content .clock {
+      display: grid;
+      justify-items: center;
+      gap: 20px;
+    }
+
+    .project-demo-modal__content .clock-face {
+      position: relative;
+      width: min(300px, 75vw);
+      aspect-ratio: 1;
+      border: 8px solid #7183a5;
+      border-radius: 50%;
+      background: radial-gradient(circle, #202b40 0 4%, transparent 4.5%), #131a28;
+      box-shadow: inset 0 0 28px #080b12, 0 12px 30px #080b1270;
+    }
+
+    .project-demo-modal__content .tick {
+      position: absolute;
+      top: 8%;
+      left: 50%;
+      width: 3px;
+      height: 10px;
+      border-radius: 3px;
+      background: #bdc9df;
+      transform-origin: 50% 1200%;
+    }
+
+    .project-demo-modal__content .hand {
+      position: absolute;
+      bottom: 50%;
+      left: calc(50% - 2px);
+      width: 4px;
+      border-radius: 5px;
+      background: #eaf0ff;
+      transform-origin: 50% 100%;
+    }
+
+    .project-demo-modal__content .hand.hour { height: 25%; }
+    .project-demo-modal__content .hand.minute { height: 35%; background: #91b2ff; }
+    .project-demo-modal__content .hand.second { width: 2px; height: 39%; background: #ff8b79; }
+
+    .project-demo-modal__content .clock-time {
+      color: #c8d6f5;
+      font-size: 1.25rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .project-demo-modal__content .board {
+      display: grid;
+      gap: 10px;
+      width: min(360px, 100%);
+      margin: 0 auto 20px;
+    }
+
+    .project-demo-modal__content .tic-board { grid-template-columns: repeat(3, 1fr); }
+
+    .project-demo-modal__content .tic-cell {
+      aspect-ratio: 1;
+      font-size: clamp(2.5rem, 12vw, 4.5rem);
+      font-weight: 800;
+    }
+
+    .project-demo-modal__content .tic-cell[data-mark="X"] { color: #9ab8ff; }
+    .project-demo-modal__content .tic-cell[data-mark="O"] { color: #ffad9d; }
+
+    .project-demo-modal__content .snake-wrap {
+      display: grid;
+      justify-items: center;
+      gap: 14px;
+    }
+
+    .project-demo-modal__content canvas {
+      display: block;
+      width: min(400px, 100%);
+      height: auto;
+      border: 1px solid #47546e;
+      border-radius: 12px;
+      background: #101722;
+      touch-action: none;
+    }
+
+    .project-demo-modal__content .direction-pad {
+      display: grid;
+      grid-template-columns: repeat(3, 48px);
+      gap: 5px;
+    }
+
+    .project-demo-modal__content .direction-pad button { min-height: 42px; }
+    .project-demo-modal__content .direction-pad button:nth-child(1) { grid-column: 2; }
+    .project-demo-modal__content .direction-pad button:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .project-demo-modal__content .direction-pad button:nth-child(3) { grid-column: 2; grid-row: 2; }
+    .project-demo-modal__content .direction-pad button:nth-child(4) { grid-column: 3; grid-row: 2; }
+
+    .project-demo-modal__content .connect-wrap { overflow-x: auto; }
+
+    .project-demo-modal__content .connect-board {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(36px, 1fr));
+      gap: 7px;
+      width: min(430px, 100%);
+      margin: 0 auto;
+      padding: 12px;
+      border-radius: 14px;
+      background: #315da8;
+    }
+
+    .project-demo-modal__content .connect-cell {
+      aspect-ratio: 1;
+      min-width: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #18243a;
+    }
+
+    .project-demo-modal__content .connect-cell[data-mark="red"] {
+      background: #ff8175;
+      box-shadow: inset 0 0 0 3px #ffd0c9;
+    }
+
+    .project-demo-modal__content .connect-cell[data-mark="yellow"] {
+      background: #ffd166;
+      box-shadow: inset 0 0 0 3px #fff0bd;
+    }
+
+    .project-demo-modal__content .drop-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 7px;
+      width: min(430px, 100%);
+      margin: 0 auto 8px;
+    }
+
+    .project-demo-modal__content .drop { min-height: 38px; }
+
+    @media (max-width: 600px) {
+      .project-demo-modal { padding: 12px; }
+      .project-demo-modal__panel { max-height: 96vh; }
+    }
+
     .resume-doc-page {
       display: grid;
       grid-template-columns: 1fr 1px 1fr;
@@ -2680,8 +2965,8 @@
               <div class="project-card__actions">
                 <a href="https://github.com/Mohammedasif2007" target="_blank" rel="noopener noreferrer" target="_blank"
                   rel="noopener" class="btn btn--sm btn--ghost">GitHub Repository</a>
-                <a href="project-demos.html?project=analog-clock" target="_blank" rel="noopener noreferrer"
-                  class="btn btn--sm btn--ghost">Live Demo</a>
+                <button type="button" data-project-demo="analog-clock"
+                  class="btn btn--sm btn--ghost project-demo-link">Live Demo</button>
               </div>
             </div>
           </article>
@@ -2698,8 +2983,8 @@
               <div class="project-card__actions">
                 <a href="https://github.com/Mohammedasif2007" target="_blank" rel="noopener noreferrer" target="_blank"
                   rel="noopener" class="btn btn--sm btn--ghost">GitHub Repository</a>
-                <a href="project-demos.html?project=tic-tac-toe" target="_blank" rel="noopener noreferrer"
-                  class="btn btn--sm btn--ghost">Live Demo</a>
+                <button type="button" data-project-demo="tic-tac-toe"
+                  class="btn btn--sm btn--ghost project-demo-link">Live Demo</button>
               </div>
             </div>
           </article>
@@ -2716,8 +3001,8 @@
               <div class="project-card__actions">
                 <a href="https://github.com/Mohammedasif2007" target="_blank" rel="noopener noreferrer" target="_blank"
                   rel="noopener" class="btn btn--sm btn--ghost">GitHub Repository</a>
-                <a href="project-demos.html?project=snake-game" target="_blank" rel="noopener noreferrer"
-                  class="btn btn--sm btn--ghost">Live Demo</a>
+                <button type="button" data-project-demo="snake-game"
+                  class="btn btn--sm btn--ghost project-demo-link">Live Demo</button>
               </div>
             </div>
           </article>
@@ -2733,8 +3018,8 @@
               <div class="project-card__actions">
                 <a href="https://github.com/Mohammedasif2007" target="_blank" rel="noopener noreferrer" target="_blank"
                   rel="noopener" class="btn btn--sm btn--ghost">GitHub Repository</a>
-                <a href="project-demos.html?project=connect-four" target="_blank" rel="noopener noreferrer"
-                  class="btn btn--sm btn--ghost">Live Demo</a>
+                <button type="button" data-project-demo="connect-four"
+                  class="btn btn--sm btn--ghost project-demo-link">Live Demo</button>
               </div>
             </div>
           </article>
@@ -2947,6 +3232,19 @@
     </svg>
   </button>
 
+  <div class="project-demo-modal" id="projectDemoModal" role="dialog" aria-modal="true"
+    aria-labelledby="projectDemoTitle" aria-hidden="true">
+    <div class="project-demo-modal__backdrop" id="projectDemoBackdrop"></div>
+    <div class="project-demo-modal__panel">
+      <div class="project-demo-modal__toolbar">
+        <h2 class="project-demo-modal__title" id="projectDemoTitle">Project Demo</h2>
+        <button class="project-demo-modal__close" id="projectDemoClose" type="button"
+          aria-label="Close project demo">&times;</button>
+      </div>
+      <div class="project-demo-modal__content" id="projectDemoContent" aria-live="polite"></div>
+    </div>
+  </div>
+
   <!-- ============ RESUME MODAL (portfolio-styled view) ============ -->
   <div class="resume-modal" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle"
     aria-hidden="true">
@@ -3094,6 +3392,7 @@
       initTypedRole();
       initContactForm();
       initResumeModal();
+      initProjectDemoModal();
     });
 
     /* ---------------------------------------------------------
@@ -3459,6 +3758,335 @@
       openBtn.addEventListener('click', openModal);
       closeBtn.addEventListener('click', closeModal);
       backdrop.addEventListener('click', closeModal);
+    }
+
+    function initProjectDemoModal() {
+      const modal = document.getElementById('projectDemoModal');
+      const content = document.getElementById('projectDemoContent');
+      const title = document.getElementById('projectDemoTitle');
+      const closeBtn = document.getElementById('projectDemoClose');
+      const backdrop = document.getElementById('projectDemoBackdrop');
+      if (!modal || !content || !title || !closeBtn || !backdrop) return;
+
+      let lastFocused = null;
+      let cleanupDemo = null;
+
+      function closeModal() {
+        if (cleanupDemo) cleanupDemo();
+        cleanupDemo = null;
+        content.replaceChildren();
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKeydown);
+        if (lastFocused) lastFocused.focus();
+      }
+
+      function onKeydown(event) {
+        if (event.key === 'Escape') closeModal();
+      }
+
+      document.querySelectorAll('button.project-demo-link').forEach((button) => {
+        button.addEventListener('click', () => {
+          const demo = demos[button.dataset.projectDemo];
+          if (!demo) return;
+
+          lastFocused = button;
+          title.textContent = demo.title + ' Demo';
+          const intro = document.createElement('p');
+          intro.className = 'demo-intro';
+          intro.textContent = demo.intro;
+          const game = document.createElement('div');
+          content.replaceChildren(intro, game);
+          cleanupDemo = demo.render(game);
+          modal.classList.add('is-open');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+          closeBtn.focus();
+          document.addEventListener('keydown', onKeydown);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
+
+      const demos = {
+        'analog-clock': {
+          title: 'Analog Clock',
+          intro: 'A live clock demo inspired by the Python desktop clock project.',
+          render: renderClock
+        },
+        'tic-tac-toe': {
+          title: 'Tic Tac Toe',
+          intro: 'Take turns as X and O. The first player to make a line of three wins.',
+          render: renderTicTacToe
+        },
+        'snake-game': {
+          title: 'Snake Game',
+          intro: 'Use the arrow keys, WASD, or the buttons to collect food and grow.',
+          render: renderSnake
+        },
+        'connect-four': {
+          title: 'Connect Four',
+          intro: 'Drop discs into a column. Connect four in a row to win.',
+          render: renderConnectFour
+        }
+      };
+
+      function renderClock(root) {
+        root.innerHTML = '<div class="clock"><div class="clock-face" role="img" aria-label="Live analog clock"><div class="clock-hands"></div></div><div class="clock-time"></div></div>';
+        const hands = root.querySelector('.clock-hands');
+        for (let index = 0; index < 12; index += 1) {
+          const tick = document.createElement('span');
+          tick.className = 'tick';
+          tick.style.transform = 'rotate(' + (index * 30) + 'deg)';
+          hands.appendChild(tick);
+        }
+        ['hour', 'minute', 'second'].forEach((name) => {
+          const hand = document.createElement('span');
+          hand.className = 'hand ' + name;
+          hands.appendChild(hand);
+        });
+
+        const update = () => {
+          const now = new Date();
+          const seconds = now.getSeconds() + now.getMilliseconds() / 1000;
+          const minutes = now.getMinutes() + seconds / 60;
+          const hours = (now.getHours() % 12) + minutes / 60;
+          root.querySelector('.hand.second').style.transform = 'rotate(' + (seconds * 6) + 'deg)';
+          root.querySelector('.hand.minute').style.transform = 'rotate(' + (minutes * 6) + 'deg)';
+          root.querySelector('.hand.hour').style.transform = 'rotate(' + (hours * 30) + 'deg)';
+          root.querySelector('.clock-time').textContent = now.toLocaleTimeString();
+        };
+        update();
+        const timer = window.setInterval(update, 250);
+        return () => window.clearInterval(timer);
+      }
+
+      function renderTicTacToe(root) {
+        root.innerHTML = '<p class="status" aria-live="polite">X starts.</p><div class="board tic-board" role="grid" aria-label="Tic Tac Toe board"></div><button class="secondary" type="button">New game</button>';
+        const board = root.querySelector('.tic-board');
+        const status = root.querySelector('.status');
+        const reset = root.querySelector('button');
+        const cells = Array(9).fill('');
+        const wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+        let player = 'X';
+        let finished = false;
+
+        cells.forEach((_, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'cell tic-cell';
+          button.setAttribute('role', 'gridcell');
+          button.setAttribute('aria-label', 'Empty square');
+          button.addEventListener('click', () => {
+            if (finished || cells[index]) return;
+            cells[index] = player;
+            button.textContent = player;
+            button.dataset.mark = player;
+            button.setAttribute('aria-label', player + ' square');
+            if (wins.some((line) => line.every((cell) => cells[cell] === player))) {
+              status.textContent = player + ' wins!';
+              finished = true;
+            } else if (cells.every(Boolean)) {
+              status.textContent = 'It is a draw.';
+              finished = true;
+            } else {
+              player = player === 'X' ? 'O' : 'X';
+              status.textContent = player + "'s turn.";
+            }
+          });
+          board.appendChild(button);
+        });
+
+        reset.addEventListener('click', () => {
+          cells.fill('');
+          player = 'X';
+          finished = false;
+          status.textContent = 'X starts.';
+          board.querySelectorAll('button').forEach((button) => {
+            button.textContent = '';
+            delete button.dataset.mark;
+            button.setAttribute('aria-label', 'Empty square');
+          });
+        });
+      }
+
+      function renderSnake(root) {
+        root.innerHTML = '<div class="snake-wrap"><p class="status snake-status" aria-live="polite">Press Start to play.</p><canvas width="400" height="400" aria-label="Snake game board"></canvas><div class="actions"><button class="primary snake-start" type="button">Start game</button><span class="status snake-score">Score: 0</span></div><div class="direction-pad" aria-label="Snake direction controls"><button class="secondary" data-direction="up" type="button" aria-label="Up">&uarr;</button><button class="secondary" data-direction="left" type="button" aria-label="Left">&larr;</button><button class="secondary" data-direction="down" type="button" aria-label="Down">&darr;</button><button class="secondary" data-direction="right" type="button" aria-label="Right">&rarr;</button></div></div>';
+        const canvas = root.querySelector('canvas');
+        const context = canvas.getContext('2d');
+        const status = root.querySelector('.snake-status');
+        const scoreLabel = root.querySelector('.snake-score');
+        const size = 20;
+        let snake;
+        let food;
+        let direction;
+        let nextDirection;
+        let score;
+        let timer = null;
+
+        function draw() {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.fillStyle = '#ff8175';
+          context.fillRect(food.x * size + 3, food.y * size + 3, size - 6, size - 6);
+          snake.forEach((part, index) => {
+            context.fillStyle = index ? '#75a0ef' : '#b4ccff';
+            context.fillRect(part.x * size + 2, part.y * size + 2, size - 4, size - 4);
+          });
+        }
+
+        function finish(message) {
+          window.clearInterval(timer);
+          timer = null;
+          status.textContent = message;
+        }
+
+        function tick() {
+          direction = nextDirection;
+          const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
+          if (head.x < 0 || head.x >= 20 || head.y < 0 || head.y >= 20 ||
+              snake.some((part) => part.x === head.x && part.y === head.y)) {
+            finish('Game over. Your score: ' + score + '.');
+            return;
+          }
+          snake.unshift(head);
+          if (head.x === food.x && head.y === food.y) {
+            score += 1;
+            scoreLabel.textContent = 'Score: ' + score;
+            do {
+              food = { x: Math.floor(Math.random() * 20), y: Math.floor(Math.random() * 20) };
+            } while (snake.some((part) => part.x === food.x && part.y === food.y));
+          } else {
+            snake.pop();
+          }
+          draw();
+        }
+
+        function changeDirection(name) {
+          const directions = {
+            up: { x: 0, y: -1 },
+            down: { x: 0, y: 1 },
+            left: { x: -1, y: 0 },
+            right: { x: 1, y: 0 }
+          };
+          const candidate = directions[name];
+          if (candidate && direction && candidate.x !== -direction.x && candidate.y !== -direction.y) {
+            nextDirection = candidate;
+          }
+        }
+
+        function start() {
+          window.clearInterval(timer);
+          snake = [{ x: 10, y: 10 }, { x: 9, y: 10 }, { x: 8, y: 10 }];
+          direction = { x: 1, y: 0 };
+          nextDirection = direction;
+          score = 0;
+          food = { x: 15, y: 10 };
+          status.textContent = 'Use arrow keys or WASD.';
+          scoreLabel.textContent = 'Score: 0';
+          draw();
+          timer = window.setInterval(tick, 120);
+        }
+
+        function onKeydown(event) {
+          const keys = {
+            ArrowUp: 'up', w: 'up', ArrowDown: 'down', s: 'down',
+            ArrowLeft: 'left', a: 'left', ArrowRight: 'right', d: 'right'
+          };
+          const name = keys[event.key] || keys[event.key.toLowerCase()];
+          if (name) {
+            event.preventDefault();
+            changeDirection(name);
+          }
+        }
+
+        document.addEventListener('keydown', onKeydown);
+        root.querySelectorAll('[data-direction]').forEach((button) => {
+          button.addEventListener('click', () => changeDirection(button.dataset.direction));
+        });
+        root.querySelector('.snake-start').addEventListener('click', start);
+        context.fillStyle = '#263247';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        return () => {
+          window.clearInterval(timer);
+          document.removeEventListener('keydown', onKeydown);
+        };
+      }
+
+      function renderConnectFour(root) {
+        root.innerHTML = '<p class="status connect-status" aria-live="polite">Red starts.</p><div class="drop-row"></div><div class="connect-wrap"><div class="connect-board" role="grid" aria-label="Connect Four board"></div></div><button class="secondary connect-reset" type="button">New game</button>';
+        const status = root.querySelector('.connect-status');
+        const board = root.querySelector('.connect-board');
+        const drops = root.querySelector('.drop-row');
+        const cells = Array.from({ length: 6 }, () => Array(7).fill(''));
+        let player = 'red';
+        let finished = false;
+
+        function hasWon(row, col) {
+          return [[0, 1], [1, 0], [1, 1], [1, -1]].some((direction) => {
+            let count = 1;
+            for (const sign of [-1, 1]) {
+              let currentRow = row + direction[0] * sign;
+              let currentCol = col + direction[1] * sign;
+              while (currentRow >= 0 && currentRow < 6 && currentCol >= 0 && currentCol < 7 &&
+                  cells[currentRow][currentCol] === player) {
+                count += 1;
+                currentRow += direction[0] * sign;
+                currentCol += direction[1] * sign;
+              }
+            }
+            return count >= 4;
+          });
+        }
+
+        function playColumn(col) {
+          if (finished) return;
+          let row = 5;
+          while (row >= 0 && cells[row][col]) row -= 1;
+          if (row < 0) return;
+          cells[row][col] = player;
+          board.querySelector('[data-cell="' + row + '-' + col + '"]').dataset.mark = player;
+          if (hasWon(row, col)) {
+            status.textContent = (player === 'red' ? 'Red' : 'Yellow') + ' wins!';
+            finished = true;
+          } else if (cells.every((line) => line.every(Boolean))) {
+            status.textContent = 'It is a draw.';
+            finished = true;
+          } else {
+            player = player === 'red' ? 'yellow' : 'red';
+            status.textContent = (player === 'red' ? 'Red' : 'Yellow') + "'s turn.";
+          }
+        }
+
+        for (let col = 0; col < 7; col += 1) {
+          const drop = document.createElement('button');
+          drop.type = 'button';
+          drop.className = 'drop';
+          drop.textContent = 'Drop';
+          drop.setAttribute('aria-label', 'Drop disc in column ' + (col + 1));
+          drop.addEventListener('click', () => playColumn(col));
+          drops.appendChild(drop);
+        }
+
+        cells.forEach((line, row) => {
+          line.forEach((_, col) => {
+            const cell = document.createElement('div');
+            cell.className = 'connect-cell';
+            cell.dataset.cell = row + '-' + col;
+            cell.setAttribute('role', 'gridcell');
+            board.appendChild(cell);
+          });
+        });
+
+        root.querySelector('.connect-reset').addEventListener('click', () => {
+          cells.forEach((line) => line.fill(''));
+          board.querySelectorAll('.connect-cell').forEach((cell) => delete cell.dataset.mark);
+          player = 'red';
+          finished = false;
+          status.textContent = 'Red starts.';
+        });
+      }
     }
 
   </script>
